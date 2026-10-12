@@ -1,0 +1,8 @@
+{
+  "train_pem": 0.0004367503570392728,
+  "val_pem": 0.00042013227357529104,
+  "selected_step": 1,
+  "metrics_source": "TensorBoard, train and validation at the same selected step",
+  "recorded_log_span_seconds": 1.09474515914917,
+  "paper_training_time_seconds": 60
+}

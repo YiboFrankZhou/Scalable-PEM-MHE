@@ -1,0 +1,89 @@
+{
+  "n_points_per_completed_width": 100,
+  "completed_widths": [
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "mhe_window": 40,
+  "state_space_model": "ETHZ vehicle x=[vx, vy, yaw_rate], y=[vx, yaw_rate]",
+  "sample_time": 0.02,
+  "active_parameters": "nn_residual only",
+  "force_model": "pure_blackbox_nn",
+  "nn_final_weight_and_bias_zero": true,
+  "mhe_nn_width": 4,
+  "mhe_warm_start": "EKF/RTS with zero-output black-box dynamics",
+  "physics_derived_arrival_and_noise_weights": true,
+  "fixed_physics_params": [
+    6.0,
+    6.0,
+    1.2000000476837158,
+    1.2000000476837158,
+    0.21407951414585114,
+    0.1881304830312729,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.2720862925052643,
+    0.04811294376850128,
+    0.047879647463560104,
+    0.0018146876245737076,
+    3.152080171275884e-05
+  ],
+  "fixed_sbar": [
+    1.6500230732942238,
+    -0.024030662876619504,
+    -0.7404711831399263
+  ],
+  "fixed_sigmainv": [
+    0.0001782046138246023,
+    0.0054552281899931275,
+    8.732140478022442e-06
+  ],
+  "fixed_qinv": [
+    [
+      0.016375639311571967,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.1434004049982574,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.002171198866757537
+    ]
+  ],
+  "fixed_rinv": [
+    [
+      1.6375639311571968,
+      0.0
+    ],
+    [
+      0.0,
+      0.7237329555858457
+    ]
+  ],
+  "process_disturbance_model": "full-state additive derivative correction integrated by forward Euler",
+  "saved_point_fields": [
+    "width",
+    "nn_params",
+    "dataset_index",
+    "ours_ms",
+    "leo_ms",
+    "relative_gradient_error"
+  ]
+}

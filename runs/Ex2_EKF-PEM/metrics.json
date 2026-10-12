@@ -1,0 +1,9 @@
+{
+  "train_pem": 0.00013285194566946612,
+  "val_pem": 6.48910928658968e-05,
+  "selected_step": 2,
+  "metrics_source": "candidate_selection.npz, candidate 7",
+  "physical_parameter_error_percent": 22.993608815902043,
+  "recorded_log_span_seconds": 0.3040649890899658,
+  "paper_training_time_seconds": 60
+}

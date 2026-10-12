@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.idea/
+.pytest_cache/
+.venv/
+*.egg-info/
+.env
+build/
+results/*
+!results/Ex1/
+runs/new/

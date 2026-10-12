@@ -1,0 +1,9 @@
+{
+  "train_pem": 0.00015954513219185174,
+  "val_pem": 9.522768959868699e-05,
+  "selected_step": 355,
+  "metrics_source": "checkpoint",
+  "physical_parameter_error_percent": 161.93451671258904,
+  "recorded_log_span_seconds": 1570.4150578975677,
+  "paper_training_time_seconds": 1560
+}
