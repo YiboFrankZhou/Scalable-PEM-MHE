@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This repository contains code for the paper:
->  Yibo Zhou, Johannes Köhler "Scalable Identification of Physics-Based and Neural Dynamics from Partial Measurements", preprint available on **arXiv**: [[Link]](https://arxiv.org/abs/2509.05595)
+>  Yibo Zhou, Johannes Köhler "Scalable Identification of Physics-Based and Neural Dynamics from Partial Measurements", preprint available on **arXiv**: [[Link]](https://arxiv.org/abs/2610.16559)
 
 ## Installation
 
