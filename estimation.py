@@ -325,8 +325,8 @@ def initial_ekf_multistart_warmstarts(model, dataset, state_min, state_max, base
     return np.stack((np.asarray(baseline), lower, upper))
 
 
-def compute_mhe_estimations_multistart(observer, loader, warmstart_candidates):
-    """Use three independent starts once; prefer converged solutions, then the lowest MHE cost."""
+def compute_mhe_estimations_multistart(observer, loader, warmstart_candidates, max_attempts=1):
+    """Prefer converged solutions, then the lowest MHE cost across independent starts."""
     dataset = loader.dataset
     us, ys = (np.asarray(dataset.u), np.asarray(dataset.y))
     warmstart_candidates = np.asarray(warmstart_candidates, dtype=float)
@@ -340,6 +340,14 @@ def compute_mhe_estimations_multistart(observer, loader, warmstart_candidates):
                 ys[first:last],
                 candidate[first:last]
             )
+            for _ in range(max_attempts - 1):
+                if np.all(statuses == 0):
+                    break
+                count = last - first
+                observer.batch_solver.solve(count)
+                result = observer._result(count)
+                costs = np.array([s.get_cost() for s in observer.batch_solver.ocp_solvers[:count]])
+                statuses = observer.batch_solver.status[:count].copy()
             candidate_results.append(result)
             candidate_costs.append(costs)
             candidate_statuses.append(statuses)

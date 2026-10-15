@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader, TensorDataset
 from data import DatasetPytorch, OBSERVED_STATE_INDICES, aligned_features
 from estimation import (
     ObserverMHEAcados, calculate_MHE_constraint_batch, calculate_MHE_loss_batch,
-    tensor_parameters,
+    compute_mhe_estimations_multistart, tensor_parameters, terminal_excluded_ekf_warmstart,
 )
 from gradients import (
     adjoint_decomposition_batch, build_KKT_blocks_batch, solve_block_tridiagonal_batch,
@@ -53,6 +53,16 @@ class PEMMHE:
         dataset.xhats, dataset.whats, dataset.mus = (
             torch.as_tensor(np.concatenate(values), dtype=torch.float32) for values in zip(*results))
         return evaluate_PEM_loss(self.loaders[split], self.config.C)
+
+    def estimate_from_ekf(self, split, initial_hidden_states):
+        """Initialize MHE from EKF/RTS histories that exclude the prediction target."""
+        self.observer.update_params(self.model.sbar.detach().numpy(), self.model.Sigmainv.detach().numpy())
+        loader = self.loaders[split]
+        history = {"u": loader.dataset.u, "y": loader.dataset.y}
+        candidates = np.stack([terminal_excluded_ekf_warmstart(
+            self.model, history, initial_hidden_state=value) for value in initial_hidden_states])
+        compute_mhe_estimations_multistart(self.observer, loader, candidates, max_attempts=3)
+        return evaluate_PEM_loss(loader, self.config.C)
 
     def backward(self):
         """Accumulate -d(F^T lambda)/d alpha with primal, dual, and adjoint fixed."""

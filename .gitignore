@@ -8,6 +8,4 @@ __pycache__/
 *.egg-info/
 .env
 build/
-results/*
-!results/Ex1/
 runs/new/

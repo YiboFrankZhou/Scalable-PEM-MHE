@@ -48,6 +48,14 @@ def show_model(directory, model, parameters=None):
         print(pd.Series(parameters, name="Physical parameters").to_string(float_format=lambda v: f"{v:.8g}"))
 
 
+def show_metrics(train_pem, val_pem, mhe_warmstart=False):
+    print(f"Train PEM cost: {train_pem:.6e}")
+    print(f"Validation PEM cost: {val_pem:.6e}")
+    if mhe_warmstart:
+        print("MHE results depend on the solver warm start. EKF/RTS warm starts are used here, "
+              "so the costs may differ from those reported in the paper.")
+
+
 def save_car_model_params(model, path):
     import torch
 
